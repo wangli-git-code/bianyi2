@@ -82,7 +82,7 @@ public class Token {
 
     @Override
     public String toString() {
-        Var = new StringBuilder();
+        var = new StringBuilder();
         sb.append("Line: ").append(this.startPos.row).append(' ');
         sb.append("Column: ").append(this.startPos.col).append(' ');
         sb.append("Type: ").append(this.tokenType).append(' ');
