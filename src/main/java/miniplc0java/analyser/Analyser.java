@@ -1,6 +1,5 @@
 package miniplc0java.analyser;
 
-import com.sun.corba.se.impl.oa.toa.TOA;
 import miniplc0java.error.AnalyzeError;
 import miniplc0java.error.CompileError;
 import miniplc0java.error.ErrorCode;
