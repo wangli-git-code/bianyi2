@@ -289,9 +289,9 @@ public final class Analyser {
                 //表达式
                 analyseExpression();
             }
-            
+
             expect(TokenType.Semicolon);
-            
+
             instructions.add(new Instruction(Operation.STO, getOffset(nameToken.getValueString(), nameToken.getStartPos())));
         }
     }
@@ -301,7 +301,7 @@ public final class Analyser {
      * @throws CompileError
      */
     private void analyseStatementSequence() throws CompileError {
-        while (true) {
+        while (check(TokenType.Ident)||check(TokenType.Print)||check(TokenType.Semicolon)) {
             // 如果下一个 token 是……
             Token peeked = peek();
             if (peeked.getTokenType() == TokenType.Ident) {
@@ -321,7 +321,7 @@ public final class Analyser {
         }
         //throw new Error("Not implemented");
     }
-    
+
     /**
      * <常表达式> ::= [<符号>]<无符号整数>
      * @throws CompileError
