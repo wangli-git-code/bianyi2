@@ -1,6 +1,5 @@
 package miniplc0java.tokenizer;
 
-import com.google.common.collect.Lists;
 import miniplc0java.error.TokenizeError;
 import miniplc0java.error.ErrorCode;
 import miniplc0java.util.Pos;
@@ -19,7 +18,7 @@ public class Tokenizer {
     // 这里本来是想实现 Iterator<Token> 的，但是 Iterator 不允许抛异常，于是就这样了
     /**
      * 获取下一个 Token
-     * 
+     *
      * @return
      * @throws TokenizeError 如果解析有异常则抛出
      */
@@ -73,16 +72,16 @@ public class Tokenizer {
             temp+=it.nextChar();
         }
         switch (temp){
-            case "Begin":
-                return new Token(TokenType.Begin,"Begin",begin,it.currentPos());
-            case "End":
-                return new Token(TokenType.End,"End",begin,it.currentPos());
-            case "Var" :
-                return new Token(TokenType.Var,"Var",begin,it.currentPos());
-            case "Const" :
-                return new Token(TokenType.Const,"Const",begin,it.currentPos());
-            case "Print" :
-                return new Token(TokenType.Print,"Print",begin,it.currentPos());
+            case "begin":
+                return new Token(TokenType.Begin,"begin",begin,it.currentPos());
+            case "end":
+                return new Token(TokenType.End,"end",begin,it.currentPos());
+            case "var" :
+                return new Token(TokenType.Var,"var",begin,it.currentPos());
+            case "const" :
+                return new Token(TokenType.Const,"const",begin,it.currentPos());
+            case "print" :
+                return new Token(TokenType.Print,"print",begin,it.currentPos());
             default:
                 return new Token(TokenType.Ident, temp ,begin,it.currentPos());
         }
