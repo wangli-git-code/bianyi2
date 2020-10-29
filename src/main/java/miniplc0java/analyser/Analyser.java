@@ -241,36 +241,32 @@ public final class Analyser {
     }
 
     private void analyseVariableDeclaration() throws CompileError {
-        // 变量声明 -> 变量声明语句*
-
         // 如果下一个 token 是 var 就继续
-        while (nextIf(TokenType.Var) != null) {
-            // 变量声明语句 -> 'var' 变量名 ('=' 表达式)? ';'
-            // 变量名
-            Token nameToken = expect(TokenType.Ident);
+        while (nextIf(TokenType.Var) != null){
+            
+            instructions.add(new Instruction(Operation.LIT,0));
+            //变量名
+            var nameToken = expect(TokenType.Ident);
+
+            // 加入符号表，请填写名字和当前位置（报错用）
+            String name = (String) nameToken.getValue();
+            addSymbol(name, false, false, nameToken.getStartPos());
+
             // 变量初始化了吗
             boolean initialized = false;
-            String name = /* 名字 */ (String) nameToken.getValue();
-            addSymbol(name, false, false, /* 当前位置 */ nameToken.getStartPos());
-            // 下个 token 是等于号吗？如果是的话分析初始化
-            if (nextIf(TokenType.Equal)!=null){
-                initialized=true;
-                instructions.add(new Instruction(Operation.STO, getOffset(nameToken.getValueString(), nameToken.getStartPos())));
-                initializeSymbol(nameToken.getValueString(),nameToken.getStartPos());
+
+            //等于号
+            if (nextIf(TokenType.Equal) != null){
+                initialized = true;
+                declareSymbol(nameToken.getValueString(), nameToken.getStartPos());
+                //表达式
                 analyseExpression();
             }
-            // 分析初始化的表达式
 
             // 分号
             expect(TokenType.Semicolon);
 
-            // 加入符号表，请填写名字和当前位置（报错用）
-
-
-            // 如果没有初始化的话在栈里推入一个初始值
-            if (!initialized) {
-                instructions.add(new Instruction(Operation.LIT, 0));
-            }
+            instructions.add(new Instruction(Operation.STO, getOffset(nameToken.getValueString(), nameToken.getStartPos())));
         }
     }
 
