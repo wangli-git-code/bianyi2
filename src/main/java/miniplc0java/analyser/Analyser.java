@@ -260,7 +260,7 @@ public final class Analyser {
                 analyseExpression();
             }
             // 分析初始化的表达式
-            
+
             // 分号
             expect(TokenType.Semicolon);
 
@@ -353,7 +353,7 @@ public final class Analyser {
 
         // 标识符是什么？
         String name = (String) nametoken.getValue();
-        SymbolEntry symbol = symbolTable.get(name);
+        var symbol = symbolTable.get(name);
         analyseExpression();
         if (symbol == null) {
             // 没有这个标识符
