@@ -247,7 +247,7 @@ public final class Analyser {
         while (nextIf(TokenType.Var) != null) {
             // 变量声明语句 -> 'var' 变量名 ('=' 表达式)? ';'
             // 变量名
-            Token nametoken = expect(TokenType.Ident);
+            Token nameToken = expect(TokenType.Ident);
             // 变量初始化了吗
             boolean initialized = false;
 
