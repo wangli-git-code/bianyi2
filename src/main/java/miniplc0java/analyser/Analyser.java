@@ -203,7 +203,8 @@ public final class Analyser {
     private void analyseMain() throws CompileError {
         // 主过程 -> 常量声明 变量声明 语句序列
         analyseConstantDeclaration();
-
+        analyseVariableDeclaration();
+        analyseStatementSequence();
         throw new Error("Not implemented");
     }
 
