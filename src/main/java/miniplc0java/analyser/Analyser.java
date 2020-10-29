@@ -258,7 +258,7 @@ public final class Analyser {
             //等于号
             if (nextIf(TokenType.Equal) != null){
                 initialized = true;
-                declareSymbol(nameToken.getValueString(), nameToken.getStartPos());
+                initializeSymbol(nameToken.getValueString(), nameToken.getStartPos());
                 //表达式
                 analyseExpression();
             }
