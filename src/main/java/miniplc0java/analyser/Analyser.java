@@ -255,7 +255,7 @@ public final class Analyser {
             if (nextIf(TokenType.Equal)!=null){
                 initialized=true;
                 instructions.add(new Instruction(Operation.STO, getOffset(nameToken.getValueString(), nameToken.getStartPos())));
-                initializeSymbol(nametoken.getValueString(),nameToken.getStartPos());
+                initializeSymbol(nameToken.getValueString(),nameToken.getStartPos());
                 analyseExpression();
             }
             // 分析初始化的表达式
